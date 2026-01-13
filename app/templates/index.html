@@ -1,0 +1,25 @@
+<a href="/impresiones">📋 Ver impresiones</a>
+
+{% extends "base.html" %}
+
+{% block title %}Nueva impresión{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Nueva solicitud</h2>
+
+    <form method= "post" action="/crear">
+      <input type="text" name="nombre_impresion" placeholder="Nombre impresión" required>
+      <input type="text" name="nombre_cliente" placeholder="Cliente" required>
+      <input type="text" name="telefono" placeholder="Telefono" required>
+      <input type="text" name="descripcion" placeholder="Descripcion" required>
+      <input type="number" name="cantidad" placeholder="Cantidad" required>
+      <select name="estado">
+        <option value="pendiente">Pendiente por cotizacion</option>
+      </select>
+
+      <button type="submit">Guardar</button>
+    </form>
+</div>
+{% endblock %}
+

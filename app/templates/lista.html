@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de impresiones{% endblock %}
+
+{% block content %}
+<h2>📋 Impresiones</h2>
+
+{% if impresiones %}
+    {% for i in impresiones %}
+        <div class="card impresion {{ i.estado }}">
+            <h3>{{ i.nombre_impresion }}</h3>
+
+            <p><strong>Cliente:</strong> {{ i.nombre_cliente }}</p>
+            <p><strong>Cantidad:</strong> {{ i.cantidad }}</p>
+            <p><strong>Estado:</strong> {{ i.estado }}</p>
+            <form method="post" action="/impresiones/{{ i.id }}/estado" class="estado-form">
+                <select name="estado" onchange="this.form.submit()">
+                    <option value="En proceso de cotizacion" {% if i.estado == "En proceso de cotizacion" %}selected{% endif %}>
+                        En proceso de cotización
+                    </option>
+                    <option value="En proceso de post-procesado" {% if i.estado == "En proceso de post-procesado" %}selected{% endif %}>
+                        En proceso de post-procesado
+                    </option>
+                    <option value="En proceso de pintado" {% if i.estado == "En proceso de pintado" %}selected{% endif %}>
+                        En proceso de pintado
+                    </option>
+                    <option value="terminado" {% if i.estado == "terminado" %}selected{% endif %}>
+                        Terminado
+                    </option>
+                    <option value="cancelado" {% if i.estado == "cancelado" %}selected{% endif %}>
+                        Cancelado
+                    </option>
+                </select>
+            </form>
+            <a href="/impresiones/{{ i.id }}/cotizar">💰 Cotizar</a>
+
+
+            <small>{{ i.fecha_creacion.strftime("%d/%m/%Y %H:%M") }}</small>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No hay impresiones registradas.</p>
+{% endif %}
+
+<a href="/" class="fab">＋</a>
+{% endblock %}

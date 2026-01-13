@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>💰 Cotización</h2>
+
+<form id="cotizacionForm">
+    <input type="number" step="0.1" name="cantidad_producto" placeholder="Cantidad de resina (ml)">
+    <input type="number" step="0.1" name="tiempo_impresion" placeholder="Tiempo impresión (h)">
+    <input type="number" step="0.1" name="tiempo_postprocesado" placeholder="Post-procesado (h)">
+    <input type="number" step="0.1" name="tiempo_pintado" placeholder="Pintado (h)">
+    <input type="number" step="0.01" name="margenGanancia" placeholder="Margen (0.3 = 30%)">
+    <input type="text" name="descripcion" placeholder="Descripción">
+
+    <button type="submit">Guardar cotización</button>
+</form>
+
+<script>
+const impresionId = {{ impresion_id }};
+</script>
+<script src="/static/js/cotizacion.js"></script>
+
+{% endblock %}
